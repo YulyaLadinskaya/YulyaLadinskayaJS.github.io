@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Угадайте число</title>
+	
+	<meta charset="utf-8">
+	
+	<style type="text/css">
+		
+		form {
+  		width: 400px;
+  		height: 200px;
+ 		border: 2px solid black;
+  		text-align: center;
+  		background-color: #808080;
+  		vertical-align: middle;
+		}
+
+		img {
+		float: left;
+		width: 175px;
+		}
+
+		.button {
+ 		background-color: #f44336;
+ 		text-align: center;
+  		color: white;
+  		margin: 5px 5px;
+		}
+
+		.info {
+		color: blue;
+		}
+
+		#form input[type="text"] {
+  		margin-left: 5px;
+  		width: 30px;
+		}
+
+		#message {
+  		color: maroon;
+  		font-size: 16px;
+  		margin: 5px;
+  		}
+	</style>
+
+	<script type="text/javascript">
+		var number = Math.floor(Math.random()*10)+1;
+			console.log(number);
+		var attempt = prompt("Введите число попыток за которое вы угадаете число");
+		count = 1;
+
+			document.getElementById('check').onclick = function() {
+				var result = document.getElementById('result');
+				var attLeft =  document.getElementById('attempts');
+			if (count <= attempt) {
+		var userValue = document.getElementById('mynum').value;
+		console.log('User enter '+ userValue);
+			if (userValue < number){
+    	result.innerHTML = 'Число меньше загаданного';
+   		}
+    	else if (userValue > number){
+    	result.innerHTML = 'Число больше загаданного';
+    	}
+    	else if (userValue == number) {
+    	result.innerHTML = 'Вы угадали. Поздравляю';
+		attLeft.style.color='blue';
+		attLeft.innerHTML = 'Вы угадали за '+count+ ' попытки';
+    	}
+		var res = attempt-count;
+		if (res>0){
+		attLeft.innerHTML = 'Попыток '+res+'  из '+attempt;
+		} 
+    	count+=1;
+		} else{
+		attLeft.innerHTML='Попыток не осталось';
+		alert('Попыток не осталось. Обновите страницу и начните заново');	
+	} 
+}
+	</script>
+</head>
+<body>
+	<div id="form" >
+		<img src="guess_2.png">
+		<div id="message"></div>
+			<input id="mynum" type="text">
+			<input type="button" id="check" class="button" value="Угадать">
+		<div class="info" id="result"></div>
+		<div class="info" id="attempts"></div>
+	</div>
+
+</body>
+</html>
